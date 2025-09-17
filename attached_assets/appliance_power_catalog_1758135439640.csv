@@ -1,0 +1,175 @@
+Appliance,Minimum,Maximum,Standby,Other Name(s),References,Notes
+100W light bulb (Incandescent),100W,100W,0W,,[1],Fixed 100 W load; runs hot and wastes energy as heat compared with LEDs.
+22 Inch LED TV,17W,17W,0.5W,,,Small TV; standby around 0.5 W; brightness affects active draw.
+"25"" colour TV",150W,150W,N/A,,,Older CRT-class power level (~150 W) when on; very low standby.
+"3"" belt sander",1000W,1000W,N/A,,,High RPM motor; load spikes under pressure—use briefly and avoid stalling.
+32 Inch LED TV,20W,60W,1W,,,Small LED TV; brightness settings affect draw; standby around 1 W.
+3D Printer,50W,250W,5W,"FDM Printer,Resin Printer",[1],Includes heaters and motion systems; varies by technology.
+42 Inch LED TV,58W,60W,0.3W,,[1],Mid-size LED TV; standby ~0.3 W; brightness is the main driver.
+42 Inch Plasma TV,450W,600W,N/A,Plasma TV,,Plasma panels draw more than LED/LCD; power varies with image brightness.
+46 Inch LED TV,60W,70W,1W,,[1],Large LED TV; HDR/brightness raises draw; standby ~1 W.
+49 Inch LED TV,85W,85W,1W,,,Modern LED TV; HDR/brightness raises draw; standby about 1 W.
+55 Inch LED TV,116W,116W,0.5W,,[1],Large LED TV; HDR raises draw vs SDR; standby around 0.5 W.
+60W light bulb (Incandescent),60W,60W,0W,,[1],Fixed 60 W load; most energy becomes heat—LED replacements are far more efficient.
+65 Inch LED TV,120W,130W,1W,,[1],Large panel; HDR/bright scenes raise draw; standby ~1 W.
+82 Inch LED TV,228W,295W,0.5W,,[1],Very large LED panel; HDR elevates draw; standby about 0.5 W.
+"9"" disc sander",1200W,1200W,N/A,,,Intermittent heavy motor load; expect brief start-up surge.
+Air Cooler,65W,80W,N/A,"Evaporative Cooler,Portable Air Cooler",,Evaporative cooler with water reservoir; much lower draw than compressor AC.
+Air Fryer,1500W,1500W,N/A,,[1],Convection heater cooks quickly; shorter preheat than an oven.
+Air Fryer Toaster Oven,1400W,1800W,2W,"Convection Oven, Countertop Oven",[1],"Combination toaster oven with air fryer mode, higher load than standalone fryers."
+Air Purifier,25W,30W,N/A,,[1],Fan speed and filter resistance set draw; sleep modes are very low.
+Amazon Echo,3W,3W,2W,,,Always-on smart speaker; microphones/network keep a small idle draw.
+Amazon Echo Dot,2W,3W,N/A,,,Always listening for wake word; very low idle draw.
+Amazon Echo Show,2W,4W,0.1W,,,Smart display; screen brightness dominates over audio/voice processing.
+American-Style Fridge Freezer,40W,80W,N/A,"American Fridge Freezer, Double Door Refrigerator",[1],Compressor cycles 24/7; defrost/heater peaks occur—door openings increase consumption.
+Apple TV,3W,6W,0.3W,,[1],Low idle; 4K playback uses more; sleep mode minimizes draw.
+Aquarium Heater,50W,300W,N/A,Fish Tank Heater,[1],"Depends on tank size, common household units range 50–300W."
+Aquarium Pump,20W,50W,N/A,,[1],Aquarium circulation pump runs continuously; flow/head settings affect draw.
+AV Receiver,450W,450W,N/A,,[1],Amplifier power scales with volume; network standby can be higher than basic standby.
+Baby Bottle Warmer,150W,300W,N/A,Bottle Heater,[1],"Used for infant feeding, short duty cycle."
+Bathroom Towel Heater,60W,150W,N/A,"Towel Rail,Heated Towel Rail",,Low-watt heater for towels; best used with timer/thermostat.
+Bread Maker,450W,800W,N/A,Bread Machine,[1],Typical home bread maker cycles between 450–800W depending on kneading vs baking.
+Ceiling Fan,60W,70W,N/A,,[1],Moves air efficiently for comfort; reverse mode aids winter circulation.
+Chromebook,45W,45W,N/A,Chrome Book,[1],Low-power laptop; charging state and screen brightness dominate draw.
+Chromecast,2W,2W,N/A,,,Streaming dongle; always-on network connection with low idle draw.
+Clock radio,1W,2W,N/A,,,Always-on for clock/alarm; very low continuous draw.
+Clothes Dryer,1000W,4000W,N/A,"Tumble Dryer,Dryer",,Resistive heater with long cycles; vented vs condenser types affect energy per load.
+Coffee Maker,800W,1400W,N/A,,,Brew heater is highest draw; hotplate keep-warm uses much less.
+Computer Monitor,25W,30W,N/A,,[1],Monitor draw depends on size/brightness; sleep mode is very low.
+Cooker Hood,20W,30W,N/A,,[1],Fan speed and lighting determine draw; clean filters maintain performance.
+Corded Drill,600W,850W,N/A,Electric Drill,[1],Motor load peaks on start and under heavy drilling; short duty.
+Corded Electric Handheld Leaf Blower,2500W,2500W,N/A,,,High-speed motor for short outdoor bursts; expect strong start-up surge.
+Cordless Drill Charger,70W,150W,N/A,,,Consumes power mainly while charging; trickle/maintain mode after full.
+Countertop Ice Maker,100W,200W,N/A,"Portable Ice Machine,Ice Cube Maker",[1],Continuous-cycle ice makers for kitchens and bars.
+CPAP Machine,30W,60W,N/A,CPAP machine,,Heated humidifier adds to draw; pressure setting and leaks affect power.
+Curling Iron,25W,35W,N/A,,[1],"Short, thermostatically controlled use; heats rapidly."
+DAB Mains Radio,5W,9W,N/A,DAB Radio,,Always-on radio/clock; very low continuous draw.
+Deep Freezer,19W,19W,N/A,Chest Freezer,[1],168 Kwh/year
+Dehumidifier,240W,240W,N/A,,[1],Compressor dehumidifiers cycle with humidity; continuous use in damp rooms.
+Desk Lamp,40W,65W,N/A,Table Lamp,,Assumes incandescent/halogen; LED desk lamps use far less.
+Desktop Computer,100W,450W,N/A,,[1],Idle vs. heavy workload varies widely; PSU efficiency matters; monitor power is separate.
+Digital Photo Frame,7W,15W,2W,"Digital Frame,Smart Photo Frame,Digital Picture Frame",[1][2][3],"Typical modern 8–11"" Wi‑Fi frames draw ~10 W displaying photos and ~2 W asleep. Range allows for brightness differences, model size, and video playback."
+Dishwasher,1200W,1500W,N/A,,,Heater element/water heating dominates use; power cycles during wash and dry phases.
+Domestic Water Pump,200W,300W,N/A,Shower Water Pump,[1],Boosts shower pressure on demand; runs only during water use.
+DVD Player,26W,60W,N/A,,,Low draw for playback; standby is minimal in modern players.
+Electric Blanket,200W,200W,N/A,,,"Low, steady heat; usually used for pre-heating or on low overnight settings."
+Electric Boiler,4000W,14000W,N/A,,,Whole-home electric boiler; very high draw when heating—check tariff/circuit capacity.
+Electric Car (Charging),2000W,11000W,N/A,"EV,Electric Vehicle Charging",[1],Range covers 3kW home charge up to 11kW AC charging.
+Electric Combi Boiler,6000W,12000W,N/A,,,Whole-home electric heat/hot water; very high draw when active—rate limited by kW rating.
+Electric Doorbell Transformer,2W,2W,N/A,,,Small transformer draws continuously; only a few watts but 24/7.
+Electric Frying Pan,1000W,1800W,N/A,"Electric Skillet, Electric Fry Pan",[1][2][3][4],"Typical models range from ~1,000 W (compact 11–12″) up to ~1,800 W (larger 14–16″). Standby is negligible as units are off when not heating."
+Electric Heater Fan,2000W,3000W,N/A,,[1],Resistive space heater; converts all power to heat—use thermostat/timer to limit cost.
+Electric Kettle,1200W,3000W,N/A,Kettle,,Very high power but short boil times; energy depends on volume—keep lid on.
+Electric Mower,1500W,1500W,N/A,,,Corded mower; motor load rises in thick/wet grass—use outdoor-rated extension leads.
+Electric Pressure Cooker,1000W,1000W,N/A,Pressure Cooker,[1],Pressure mode shortens cook time; cycles heat to maintain pressure.
+Electric Shaver,15W,20W,N/A,,,Corded units draw 15–20 W only during use; rechargeable models draw even less when charging.
+Electric Stove,2000W,2000W,N/A,,[1],Resistive hob/oven element; very high draw when heating.
+Electric Tankless Water Heater,6600W,8800W,N/A,Electric Water Heater,[1],High-current on-demand water heating; draws only while tap flows.
+Electric Thermal Radiator,500W,500W,N/A,Thermal Radiator,[1],Thermostatically controlled electric radiator; 100% efficient at point of use.
+Electric Toothbrush Charger,6W,6W,N/A,,,Inductive charger has tiny trickle draw; negligible annual energy.
+Espresso Coffee Machine,1300W,1500W,N/A,Espresso Machine,,"Heating boiler/thermoblock dominates; warm-up high, idle cycles to maintain temp."
+Essential Oil Diffuser,10W,25W,N/A,"Aroma Diffuser,Mini Humidifier",[1],"Often ultrasonic type, doubling as air freshener."
+EV Car Charger,2000W,7000W,N/A,"Electric Car Charger,EV Home Charger,EVSE,Level 2 Charger",,Same context as EV home chargers; rate set by vehicle and EVSE.
+EV Home Charger,2000W,7000W,N/A,"EVSE,Level 2 Charger,Electric Car Charger",,Charge rate set by car/EVSE; overnight home charging typically 3.6–7 kW.
+Evaporative Air Conditioner,2600W,2600W,N/A,Evaporative Cooler,[1],Fan plus water pump; uses far less power than compressor AC—best in dry climates.
+External Hard Drive,1W,3W,N/A,,,Spinning disks use more than SSDs; spindown sleep cuts idle draw.
+Extractor Fan,12W,12W,N/A,Bathroom Fan,[1],Low-power extractor; may run on a timed overrun after lights off.
+Fluorescent Lamp,28W,45W,N/A,Fluorescent Tube Light,[1],Electronic vs magnetic ballast affects efficiency; LED retrofit lowers watts.
+Food Blender,300W,400W,N/A,"Mixer,Food Processor,Blender,Juice Blender,Juice Mixer",[1],"Short, high-power bursts; thick mixtures increase motor load."
+Food Dehydrator,800W,800W,N/A,Tray Dehydrator,[1],Heater plus fan for long runtimes; trays loaded increase time rather than watts.
+Freezer,30W,50W,N/A,,,Runs 24/7; chest freezers are usually more efficient than uprights.
+Fridge,100W,220W,N/A,Refrigerator,,Larder fridge runs 24/7 with compressor cycling; ambient temperature matters.
+Fridge / Freezer,150W,400W,N/A,"Fridge-Freezer, Refrigerator-Freezer Combo",,Compressor cycles across the day; ambient temperature and door openings raise use.
+Fryer,1000W,1000W,N/A,"Deep Fat Fryer,Deep Fryer",[1],Oil heater preheats then cycles; lid use reduces heat loss.
+Game Console,120W,200W,N/A,,[1],Usage varies by generation and workload (gaming vs media vs standby).
+Gaming PC,300W,600W,1W,Gaming Computer,,Discrete GPU raises power; idle is far lower than gaming/creation workloads.
+Garage Door Opener,300W,400W,N/A,Electric Garage Door,,As the door only operates for a short time (10secs?) the kWH value is low
+Google Home Mini,15W,15W,2W,Google Nest Mini,[1],Compact smart speaker; microphones/network keep a small idle draw.
+Guitar Amplifier,20W,30W,N/A,,,Power depends on type (tube vs solid-state) and volume level.
+Hair Clippers,10W,20W,N/A,"Beard Trimmer,Hair Trimmer",[1],Corded versions draw 10–20W; rechargeable models even less.
+Hair Dryer,1800W,2500W,N/A,"Blow Dryer,Hair Drier",,Very high power but short bursts; “cool shot” uses far less.
+Hand Wash Oversink Water Heater,3000W,3000W,N/A,,[1],Point-of-use 3 kW heater; draws only while water is running.
+Heated Bathroom Mirror,50W,100W,N/A,,,Demister pad warms mirror to prevent fogging; often tied to light switch/timer.
+Heated Hair Rollers,400W,400W,N/A,Heated Rollers,[1],"Heats rollers quickly, then maintains temperature at lower power."
+Home Air Conditioner,1000W,4000W,N/A,"AC,A/C,Air Con",,Compressor cycles with thermostat; inverter models reduce peaks and improve part-load efficiency.
+Home Internet Router,5W,15W,N/A,0,,Always-on device; dual-band Wi-Fi/USB devices can raise draw slightly.
+Home Phone,3W,5W,2W,DECT Telephone,,Base unit is always on; handset charging adds a few watts.
+Home Sound System,95W,95W,1W,0,[1],Amplifier draw rises with volume/channel count; standby typically ~1 W with network standby higher.
+Hot Water Dispenser,1200W,1300W,N/A,"Instant Hot Water Tap,Water Boiler",[1],Keeps a small tank near boiling; higher standby if left on continuously.
+Hot Water Immersion Heater,3000W,3000W,N/A,,,High draw only while heating tank; use thermostats/timers to manage cost.
+Humidifier,35W,40W,N/A,,[1],Ultrasonic units have low continuous draw; run for many hours per day.
+iMac,60W,240W,1W,,,All-in-one desktop; workload and screen brightness drive draw; sleep uses little.
+Induction Hob (per hob),1400W,1800W,N/A,"Induction Stove,Induction Cooktop",,Per-zone rating; power-sharing and “boost” modes can shift watts between hobs.
+Inkjet Printer,20W,30W,N/A,Printer,,Print spikes during head movement/heating; sleep/standby are very low.
+Inverter Air conditioner,1300W,1800W,N/A,,,Variable-speed (inverter) compressor matches load; more efficient at partial loads.
+Iron,1000W,1000W,N/A,Electric Iron,,Thermostat cycles on/off after warm-up; peak draw during initial heat-up.
+Jacuzzi,3000W,7500W,1500W,Hot Tub,,Heater and pumps drive usage; significant standby to hold temperature—cover is critical.
+Kitchen Extractor Fan,200W,200W,N/A,,[1],Extractor draw scales with fan speed; clean grease filters to maintain airflow.
+Laptop Computer,50W,100W,N/A,Laptop,,Draw depends on workload and charging; screen brightness and charging dominate.
+Laser Printer,600W,800W,N/A,,,Fuser heater causes brief spikes; sleep mode reduces idle draw.
+Lawnmower,1000W,1400W,N/A,,,Garden mower; intermittent duty—thicker grass increases draw.
+LED Christmas Lights,5W,5W,N/A,Tree Lights,,Very low power LED strings; ideal for timers and long runtimes.
+LED Light Bulb,7W,10W,0W,Energy Saver Bulb,[1][2],Very efficient compared with incandescent; little to no draw when switched off (non-smart).
+LG Soundbar,23W,30W,0.5W,Soundbar,,Low draw at normal volume; standby typically ~0.5 W.
+Mi Box,5W,7W,3W,"Android TV Box,Streaming Box",,Streaming box; playback uses a few more watts than idle; quick-start adds standby draw.
+Microwave,600W,1700W,3W,Microwave Oven,[1][2],Nameplate is input watts; cooking output is lower. Standby clock/display draws a few watts.
+Mini Fridge Freezer,50W,75W,N/A,,,Small compressor runs often; ambient and door openings affect cycling.
+Night Light,1W,1W,0W,,,LED designs use ~1 W; dusk sensors add a tiny overhead.
+Nintendo Switch AC Adapter,7W,40W,N/A,,,Draw depends on charging/docked mode; idle adapter draw is small.
+OLED TV,80W,200W,N/A,Organic Light-Emitting Diode TV,,OLED power depends on image brightness; near-black scenes use much less.
+Outdoor Hot Tub,60W,500W,N/A,"Canadian Spa,Outdoor Spa",[1],Heater and pumps run to maintain water temp; a good cover reduces standby losses.
+Oven,2150W,2150W,N/A,Electric Oven,,Thermostatically cycles after preheat; fan adds a small additional load.
+Paper Shredder,200W,220W,N/A,,,Motor draw spikes while shredding; keep to duty cycle to avoid overheating.
+Pedestal Fan,50W,60W,N/A,"Tall Standing Fan,Floor Fan,Stand Fan",,Freestanding oscillating fan; efficient alternative to AC.
+Percolator,800W,1100W,N/A,Coffee Maker,[1],Brews then switches to keep-warm at a much lower draw.
+Philips Hue Smart Bulb,8W,9W,0.4W,Hue lights,,"Smart bulb keeps Zigbee/Bluetooth radio alive when “off”, so small standby persists."
+Phone Charger,4W,7W,N/A,"Smart Phone Charger,Cell Phone Charger,Mobile Phone Charger",,Draw depends on charging rate; no-load and trickle draw are very small.
+Playstation 4,85W,90W,N/A,PS4,,Gaming load much higher than media playback; rest mode consumes power for updates.
+Playstation 5,160W,200W,N/A,PS5,,High gaming load; rest mode draws power for updates/charging unless disabled.
+Portable Air Conditioner,1000W,1200W,N/A,Mobile Air Conditioner,,Single-hose units are less efficient; compressor cycles heavily in heatwaves.
+Portable Mini Dehumidifier,20W,80W,N/A,"Compact Dehumidifier,Room Dehumidifier",[1],Low-power Peltier type units for bedrooms and cupboards.
+Power Shower,7500W,10500W,N/A,Electric Shower,[1],Instant water heater for showers; draw only while water is flowing.
+Pressure Cooker,700W,700W,N/A,,[1],Pressure cooking shortens cook time vs oven; cycles heating to maintain pressure.
+Pressure Washer,1500W,1500W,N/A,Electric Pressure Washer,,Pump motor load depends on pressure; use intermittently—avoid long dry runs.
+Projector,220W,270W,1W,,,Lamp brightness dominates; standby about 1 W; filters and eco modes affect draw.
+Rice Cooker,200W,800W,N/A,,[1],Cook phase high; keep-warm typically 30–60 W for hours.
+Ring Spotlight Cam Wired,4W,25W,2W,,,Standby keeps cameras/network ready; lights/recording raise draw briefly.
+Robot Vacuum Base Station,30W,100W,N/A,Robot Vacuum Cleaner Base Station,,Dock draws little at idle; auto-empty/charging cause short power spikes.
+Robot Vacuum Cleaner,20W,70W,3W,"RoboVac,iRobot Roomba",[1],Excludes charging dock; typical runtime 20–70W while moving.
+Sandwich Maker,700W,1000W,N/A,"Sandwich Press, Sandwich Toaster",,Heated plates preheat quickly; cycles to keep temperature between batches.
+Scanner,10W,18W,N/A,,,Low power with brief lamp/motor activity when scanning; standby is minimal.
+Set Top Box,27W,30W,N/A,"Cable Box,Humax Box",,PVRs can consume notable power in standby unless eco modes are enabled.
+Sewing Machine,70W,80W,N/A,,[1],Motor load varies with fabric thickness; foot pedal controls speed.
+Singer Sewing Machine (Generic),100W,100W,N/A,,,Simple sewing machine; power depends on motor speed and fabric resistance.
+Sky Q 2TB Box,40W,40W,N/A,Sky Box,[1],PVR with recordings and network standby; enable eco modes to cut idle draw.
+Slow Cooker,160W,180W,N/A,,[1],Low steady heat over many hours; efficient alternative to oven for stews/roasts.
+Smart Speaker with Display,5W,15W,2W,"Smart Display,Google Nest Hub,Amazon Echo Show",[1],Always-on smart assistant with touchscreen.
+Smoke Detector,0W,1W,N/A,Mains Connected Smoke Detector,,Mains-powered sensor with tiny continuous draw; trickle-charges backup battery.
+Soldering Iron,30W,60W,N/A,,,Thermostatic control maintains tip temperature; duty cycles during use.
+Space Heater,2000W,5000W,N/A,,[1],High-power resistive heater; use dedicated circuits and thermostat/timer.
+Steam Iron,2200W,2500W,N/A,,[1],Steam generator irons draw more at heat-up; cycles to maintain steam pressure.
+Steriliser,650W,650W,N/A,Sterilizer,[1],Short sterilization cycles; heater or UV depending on model.
+Straightening Iron,75W,300W,N/A,Hair Straighteners,,Rapid heat-up; thermostat cycles to hold set temperature.
+Strimmer,300W,500W,N/A,,,"String trimmer; high RPM, short bursts around edges and borders."
+Submersible Water Pump,200W,400W,N/A,"Pool Pump,Sump Pump,Well Pump",[1],Load depends on head height/flow; float switch automation reduces run time.
+Table Fan,10W,25W,N/A,"Desk Fan,Table Fan",,Air movement improves comfort with very low power; oscillation adds a small amount.
+Table Top Fridge,10W,15W,N/A,Mini Fridge,,Mini fridge/freezer; cycles continuously; generally less efficient per litre than full-size.
+Tablet Charger,10W,15W,N/A,,,Similar to phone chargers; charging state and screen use dominate draw.
+Tablet Computer,5W,10W,N/A,,[1],Low draw device; charging and screen brightness are the main contributors.
+Toaster,800W,1800W,N/A,,[1],"Heating elements run for short cycles (2–4 min per use); high peak, short duty."
+Tower Fan,60W,60W,N/A,,[1],Column fan; oscillation and higher speeds add modest power.
+Treadmill,280W,900W,N/A,,,Draw rises with speed/incline and user weight; highest during acceleration.
+Tube Light (1500mm),22W,22W,N/A,,,Fluorescent tube with ballast; LED replacements cut power significantly.
+"TV (19"" colour)",40W,100W,1W,,[1],Small TV; scene content and brightness affect draw; standby typically ~1 W if enabled.
+Ultrasonic Nebulizer,20W,60W,N/A,,,Ultrasonic (piezo) transducer; used in short therapy sessions with low power.
+Vacuum Cleaner,450W,900W,0W,,[1][2],"Power varies by suction setting and floor type; typically short, intermittent use."
+Wall Fan,45W,60W,0W,,,Efficient air movement; oscillation adds a small load.
+Washing Machine,500W,500W,1W,Clothes Washer,,EU annual consumption ratings are based on 220 cycles across standard programs.
+Water Dispenser,100W,100W,N/A,,[1],Maintains cold reservoir; compressor cycles—opening the tap triggers brief peaks.
+Water Feature,35W,35W,N/A,"Fountain Pump,Pond Feature",,Small continuous pump for 24/7 operation; choose efficient model to limit always-on cost.
+Water Filter and Cooler,70W,100W,N/A,Water Cooler,[1],Chills a small tank and cycles; hot/cold models draw more than cold-only.
+WiFi Booster,1W,2W,N/A,"WiFi Repeater,WiFi Extender,Range Extender",,"Low continuous draw; placement affects coverage, not power use."
+WiFi Router,4W,10W,4W,"Home Internet Router,Router",,Always-on networking; multiple bands and USB devices add a little power.
+Window Air Conditioner,500W,1500W,N/A,Window AC,,Self-contained AC; EER and thermostat settings govern cycling and draw.
+Wine cooler (18 bottles),83W,83W,N/A,,[1],Small wine cooler; thermoelectric/compressor types vary—door openings add load.
+Xbox One,50W,110W,14W,,,Instant-on standby draws more; energy-saver mode lowers idle.

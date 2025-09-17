@@ -1,0 +1,165 @@
+Build an Eco-Friendly Load-Shifting App: EcoShift
+🎯 Goal
+
+Build a beautiful, engaging web app called EcoShift that helps households save money and support a greener grid.
+EcoShift will:
+
+Collect user appliance usage patterns.
+
+Combine them with hourly electricity prices + reward/penalty bands.
+
+Calculate real costs and recommend optimal eco-friendly shift plans.
+
+Present savings as both dollars + “eco-points” (gamified rewards).
+
+Use inspiring design + messaging to remind users: “Save Money. Save Energy. Save the Earth.”
+
+🌱 Brand & UX Guidelines
+
+Theme: eco-friendly, futuristic, hopeful.
+
+Colors: soft greens, blues, earth tones; accented with bright energy colors (yellow/orange).
+
+Icons: solar panel, EV, dishwasher, leaf, planet, lightning bolt.
+
+Fonts: modern & clean (e.g., Inter, Roboto).
+
+Animations: smooth transitions, progress bars for savings.
+
+Copywriting:
+
+“EcoShift helps you lower your bill and lower emissions 🌍.”
+
+“Shift your load. Support your future.”
+
+“Green hours = green rewards.”
+
+⚡ Tech Stack
+
+Frontend: React + TypeScript + TailwindCSS (mobile-first).
+
+Backend: FastAPI (Python) or Node/Express.
+
+AI Option: Gemini 1.5 Pro for natural-language, human-friendly recommendations.
+
+Packaging: Docker, docker compose up.
+
+📊 Data Inputs
+
+Houston_pricing_data.csv → hourly market prices (USD/MWh → USD/kWh).
+
+reward_penalty_windows.csv → bands {GREEN, BLUE, ORANGE, RED}, with credits + points.
+
+appliance_power_catalog.csv → appliances + wattage ranges.
+
+🧮 Core Logic
+
+Convert prices to USD/kWh.
+
+Energy per cycle = (avg_watts / 1000) * runtime_hours.
+
+Cost(A,t) = kWh * price[t].
+
+Rewards: kWh * credit[t], Points: kWh * points[t].
+
+Net = Cost – Rewards.
+
+Shift to lowest net within user’s flexibility window.
+
+🖥️ Frontend Flow
+
+Welcome Screen
+
+Tagline: “EcoShift — Power Your Savings, Protect Our Planet.”
+
+Illustration: happy family, clean energy icons.
+
+Appliance Selector
+
+Checklist with icons: EV, Dishwasher, Dryer, Washer, Water Heater, AC, etc.
+
+For each: runtime, typical start time(s), flex hours, constraints (quiet hours).
+
+Eco Bands Panel
+
+Visual strip of 24h: GREEN = eco-friendly reward, RED = grid stress.
+
+Tooltip: “Running here earns +3 EcoPoints & cuts emissions by 20%.”
+
+Results (after compute)
+
+Per appliance:
+
+Baseline vs Recommended time.
+
+Savings $ + EcoPoints.
+
+Rationale (e.g., “Avoids 6–9 PM stress, aligns with solar surplus”).
+
+Timeline Visualization: overlay appliances on 24h band strip.
+
+Eco Impact Card: “By shifting, you avoided 2 kg of CO₂ = planting 3 trees.”
+
+Gamification
+
+EcoPoints leaderboard (local only for MVP).
+
+“Level up: Eco Hero → Planet Protector → Grid Guardian.”
+
+Export / Share
+
+Download CSV/JSON.
+
+“Share your EcoShift” → copy text summary.
+
+🌍 Gemini Integration (optional)
+
+POST /api/plan/ai:
+
+Send user data, pricing, bands.
+
+Gemini returns natural-language plan with motivation.
+
+Example output:
+
+“Shift your dishwasher to 10 PM 🌙. You’ll save $0.25, earn +6 EcoPoints, and help reduce Houston’s evening grid stress.”
+
+📡 API Schema
+
+GET /api/prices/hourly → hourly USD/kWh.
+
+GET /api/bands → band info.
+
+GET /api/metadata → appliance defaults.
+
+POST /api/plan → deterministic JSON plan.
+
+POST /api/plan/ai → same JSON but with Gemini-generated narratives.
+
+✅ Acceptance Criteria
+
+Beautiful, eco-friendly design (colors, icons, copy).
+
+Appliance input → baseline vs recommended schedule.
+
+Savings in $ + EcoPoints.
+
+Timeline visualization with GREEN/BLUE/ORANGE/RED strip.
+
+Export to CSV/JSON.
+
+Inspiring “You helped the grid & the Earth” message on results screen.
+
+Docker + README for setup.
+
+Deliverables:
+
+Source repo (frontend + backend).
+
+Docker config.
+
+README.
+
+Example screenshots/GIFs.
+
+✨ EcoShift — because every shifted hour is a step toward a greener future.
