@@ -8,23 +8,15 @@ import {
   Zap, Car, Utensils, Shirt, Droplets, Snowflake, 
   Lightbulb, Tv, WashingMachine, Wind 
 } from "lucide-react";
+import type { Appliance } from "@shared/schema";
 
-export interface Appliance {
-  id: string;
-  name: string;
+export interface ApplianceWithIcon extends Appliance {
   icon: any;
-  powerMin: number;
-  powerMax: number;
-  defaultRuntime: number;
-  selected: boolean;
-  runtime?: number;
-  startTime?: number;
-  flexHours?: number;
 }
 
 interface ApplianceSelectorProps {
-  appliances: Appliance[];
-  onApplianceUpdate: (appliances: Appliance[]) => void;
+  appliances: ApplianceWithIcon[];
+  onApplianceUpdate: (appliances: ApplianceWithIcon[]) => void;
   onNext: () => void;
 }
 

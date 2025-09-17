@@ -3,22 +3,39 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Leaf, AlertTriangle, Zap, DollarSign } from "lucide-react";
-
-export interface EcoBand {
-  hour: number;
-  band: 'GREEN' | 'BLUE' | 'ORANGE' | 'RED';
-  price: number;
-  credit: number;
-  points: number;
-  description: string;
-}
+import type { EcoBand } from "@shared/schema";
+import { useQuery } from "@tanstack/react-query";
 
 interface EcoBandsTimelineProps {
-  ecoBands: EcoBand[];
   onCalculateOptimal: () => void;
 }
 
-export default function EcoBandsTimeline({ ecoBands, onCalculateOptimal }: EcoBandsTimelineProps) {
+export default function EcoBandsTimeline({ onCalculateOptimal }: EcoBandsTimelineProps) {
+  const { data: ecoBands = [], isLoading, error } = useQuery<EcoBand[]>({
+    queryKey: ['/api/eco-bands'],
+  });
+
+  if (isLoading) {
+    return (
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold text-foreground">Loading Eco Bands...</h2>
+          <p className="text-muted-foreground text-lg">Fetching Houston's real-time energy data</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-6xl mx-auto p-6 space-y-8">
+        <div className="text-center space-y-4">
+          <h2 className="text-3xl font-bold text-foreground">Unable to Load Eco Bands</h2>
+          <p className="text-muted-foreground text-lg">Please try again later</p>
+        </div>
+      </div>
+    );
+  }
   const getBandColor = (band: string) => {
     switch (band) {
       case 'GREEN': return 'bg-chart-1 border-chart-1/30';
