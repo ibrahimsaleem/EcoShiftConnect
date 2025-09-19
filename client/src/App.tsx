@@ -342,8 +342,8 @@ function EcoShiftApp() {
       
       {/* Main Content */}
       <main className={currentStep === 'welcome' ? '' : 'pt-16'}>
-        {/* Energy Status Indicator - show on all pages except welcome */}
-        {currentStep !== 'welcome' && (
+        {/* Energy Status Indicator - show only on weather page */}
+        {currentStep === 'weather' && (
           <div className="container mx-auto px-4 py-4">
             <EnergyStatusIndicator ecoBands={ecoBands} />
           </div>
