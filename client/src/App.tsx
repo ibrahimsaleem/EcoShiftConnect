@@ -211,7 +211,8 @@ function EcoShiftApp() {
       case 'welcome':
         return (
           <WelcomeHero 
-            onGetStarted={() => setCurrentStep('appliances')} 
+            onGetStarted={() => setCurrentStep('appliances')}
+            ecoBands={ecoBands}
           />
         );
       
