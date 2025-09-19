@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Leaf, Zap, DollarSign } from "lucide-react";
+import { Leaf, Zap, DollarSign, Sparkles } from "lucide-react";
 
 interface WelcomeHeroProps {
   onGetStarted: () => void;
+  onAIGetStarted: () => void;
 }
 
-export default function WelcomeHero({ onGetStarted }: WelcomeHeroProps) {
+export default function WelcomeHero({ onGetStarted, onAIGetStarted }: WelcomeHeroProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/10 via-background to-chart-2/10 flex items-center justify-center p-6">
       <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -74,17 +75,29 @@ export default function WelcomeHero({ onGetStarted }: WelcomeHeroProps) {
         </div>
 
         {/* CTA */}
-        <div className="pt-8">
-          <Button 
-            size="lg" 
-            className="text-lg px-8 py-6 h-auto" 
-            onClick={onGetStarted}
-            data-testid="button-get-started"
-          >
-            Get Started — Shift Your Impact
-          </Button>
-          <p className="text-sm text-muted-foreground mt-4">
-            Green hours = green rewards
+        <div className="pt-8 space-y-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="text-lg px-8 py-6 h-auto" 
+              onClick={onAIGetStarted}
+              data-testid="button-ai-get-started"
+            >
+              <Sparkles className="w-5 h-5 mr-2" />
+              AI Recommendations
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 py-6 h-auto" 
+              onClick={onGetStarted}
+              data-testid="button-manual-get-started"
+            >
+              Manual Shift
+            </Button>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Get AI-powered recommendations or manually configure your schedule
           </p>
         </div>
       </div>

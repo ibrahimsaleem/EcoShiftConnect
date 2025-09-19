@@ -197,16 +197,6 @@ export default function ResultsView({ results, onExport, onStartOver, appliances
         </div>
       </Card>
 
-      {/* AI-Powered Optimization */}
-      {appliances && ecoBands && (
-        <Card className="p-6">
-          <h3 className="font-semibold text-lg mb-4">🤖 AI-Powered Optimization</h3>
-          <p className="text-sm text-muted-foreground mb-4">
-            Get Gemini AI to analyze your appliances and eco bands data to suggest the most optimal shifts for maximum savings and eco benefits.
-          </p>
-          <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
-        </Card>
-      )}
 
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">

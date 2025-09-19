@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-export type AppStep = 'welcome' | 'appliances' | 'ecobands' | 'results' | 'dashboard' | 'clock' | 'weather';
+export type AppStep = 'welcome' | 'ai-recommendations' | 'appliances' | 'ecobands' | 'results' | 'dashboard' | 'clock' | 'weather';
 
 interface NavigationBarProps {
   currentStep: AppStep;
@@ -34,6 +34,12 @@ const navigationItems = [
     label: 'Home',
     icon: Home,
     description: 'Welcome & Overview'
+  },
+  {
+    id: 'ai-recommendations' as AppStep,
+    label: 'AI Recommendations',
+    icon: Activity,
+    description: 'Get AI-Powered Optimization'
   },
   {
     id: 'appliances' as AppStep,

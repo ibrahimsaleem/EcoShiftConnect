@@ -19,6 +19,8 @@ import NavigationBar, { type AppStep } from "@/components/NavigationBar";
 import EnergyStatusIndicator from "@/components/EnergyStatusIndicator";
 import DualAnalogClock from "@/components/DualAnalogClock";
 import WeatherOptimizer from "@/components/WeatherOptimizer";
+import GeminiTestButton from "@/components/GeminiTestButton";
+import { Button } from "@/components/ui/button";
 
 // Types
 import type { Appliance, EcoBand } from "@shared/schema";
@@ -209,8 +211,33 @@ function EcoShiftApp() {
       case 'welcome':
         return (
           <WelcomeHero 
-            onGetStarted={() => setCurrentStep('appliances')} 
+            onGetStarted={() => setCurrentStep('appliances')}
+            onAIGetStarted={() => setCurrentStep('ai-recommendations')}
           />
+        );
+      
+      case 'ai-recommendations':
+        return (
+          <div className="max-w-6xl mx-auto p-6">
+            <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
+            <div className="mt-8 text-center">
+              <Button 
+                variant="outline" 
+                onClick={() => setCurrentStep('appliances')}
+                className="mr-4"
+              >
+                Manual Shift Instead
+              </Button>
+              <Button 
+                onClick={() => {
+                  setAppliances(appliances.map(a => ({ ...a, selected: false })));
+                  setCurrentStep('welcome');
+                }}
+              >
+                Start Over
+              </Button>
+            </div>
+          </div>
         );
       
       case 'appliances':

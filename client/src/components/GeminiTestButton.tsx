@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,12 +11,17 @@ interface GeminiTestButtonProps {
 }
 
 export default function GeminiTestButton({ appliances, ecoBands }: GeminiTestButtonProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Start with loading true
   const [result, setResult] = useState<{
     recommendation: string;
     optimizedSchedule: OptimizationSummary;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Automatically trigger AI recommendations when component mounts
+  useEffect(() => {
+    testGeminiOptimization();
+  }, []);
 
   const testGeminiOptimization = async () => {
     setIsLoading(true);
@@ -60,23 +65,31 @@ export default function GeminiTestButton({ appliances, ecoBands }: GeminiTestBut
 
   return (
     <div className="space-y-4">
-      <Button 
-        onClick={testGeminiOptimization} 
-        disabled={isLoading}
-        className="w-full"
-      >
-        {isLoading ? (
-          <>
-            <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-            Gemini AI is optimizing your schedule...
-          </>
-        ) : (
-          <>
-            <Sparkles className="w-4 h-4 mr-2" />
-            Get AI-Powered Optimization
-          </>
-        )}
-      </Button>
+      {/* Loading State */}
+      {isLoading && (
+        <Card className="p-6">
+          <div className="flex items-center justify-center space-x-3">
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
+            <div>
+              <h3 className="font-semibold text-lg">AI is analyzing your energy patterns...</h3>
+              <p className="text-muted-foreground">
+                Gemini AI is optimizing your schedule for maximum savings and eco benefits
+              </p>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      {/* Retry Button (only show if there was an error) */}
+      {error && (
+        <Button 
+          onClick={testGeminiOptimization} 
+          className="w-full"
+        >
+          <Sparkles className="w-4 h-4 mr-2" />
+          Retry AI Optimization
+        </Button>
+      )}
 
       {error && (
         <Card className="p-4 border-red-200 bg-red-50">
