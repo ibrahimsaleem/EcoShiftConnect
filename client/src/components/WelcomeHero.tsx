@@ -74,17 +74,18 @@ export default function WelcomeHero({ onGetStarted }: WelcomeHeroProps) {
         </div>
 
         {/* CTA */}
-        <div className="pt-8">
+        <div className="pt-8 space-y-4">
           <Button 
             size="lg" 
             className="text-lg px-8 py-6 h-auto" 
             onClick={onGetStarted}
             data-testid="button-get-started"
           >
-            Get Started — Shift Your Impact
+            <Sparkles className="w-5 h-5 mr-2" />
+            Start Optimizing Your Energy
           </Button>
-          <p className="text-sm text-muted-foreground mt-4">
-            Green hours = green rewards
+          <p className="text-sm text-muted-foreground">
+            Setup takes 2 minutes • AI recommendations • Real savings
           </p>
         </div>
       </div>

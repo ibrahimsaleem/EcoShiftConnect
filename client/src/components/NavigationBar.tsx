@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-export type AppStep = 'welcome' | 'ai-recommendations' | 'appliances' | 'ecobands' | 'results' | 'dashboard' | 'clock' | 'weather';
+export type AppStep = 'welcome' | 'ai-recommendations' | 'appliances' | 'ecobands' | 'results' | 'dashboard';
 
 interface NavigationBarProps {
   currentStep: AppStep;
@@ -37,39 +37,21 @@ const navigationItems = [
   },
   {
     id: 'appliances' as AppStep,
-    label: 'Appliances',
+    label: 'Setup',
     icon: Zap,
-    description: 'Select Your Appliances'
-  },
-  {
-    id: 'ecobands' as AppStep,
-    label: 'Eco Bands',
-    icon: Leaf,
-    description: 'View Energy Pricing'
+    description: 'Configure Appliances'
   },
   {
     id: 'results' as AppStep,
-    label: 'Results',
+    label: 'Optimize',
     icon: BarChart3,
-    description: 'Optimization Results'
+    description: 'AI Recommendations'
   },
   {
     id: 'dashboard' as AppStep,
     label: 'Dashboard',
     icon: Settings,
-    description: 'Your Eco Progress'
-  },
-  {
-    id: 'clock' as AppStep,
-    label: 'Clock',
-    icon: Clock,
-    description: 'Analog Energy Clock'
-  },
-  {
-    id: 'weather' as AppStep,
-    label: 'Weather',
-    icon: Cloud,
-    description: 'Weather-Based Optimization'
+    description: 'Complete Energy Hub'
   }
 ];
 

@@ -278,21 +278,14 @@ function EcoShiftApp() {
       
       case 'dashboard':
         return (
-          <SavingsDashboard savings={mockSavingsData} />
-        );
-      
-      case 'clock':
-        return (
-          <div className="container mx-auto px-4 py-8">
-            <DualAnalogClock ecoBands={ecoBands} />
-        </div>
-        );
-      
-      case 'weather':
-        return (
-          <div className="container mx-auto px-4 py-8">
-            <WeatherOptimizer ecoBands={ecoBands} />
-        </div>
+          <SavingsDashboard 
+            savings={mockSavingsData} 
+            ecoBands={ecoBands}
+            onStartOptimization={() => {
+              setAppliances(appliances.map(a => ({ ...a, selected: false })));
+              setCurrentStep('appliances');
+            }}
+          />
         );
       
       default:
