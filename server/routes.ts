@@ -5,8 +5,10 @@ import { EcoShiftOptimizer } from "./optimization";
 import { generateEcoShiftRecommendation } from "./gemini";
 import { 
   optimizationRequestSchema, 
-  aiRecommendationRequestSchema 
+  aiRecommendationRequestSchema,
+  enhancedAIRecommendationRequestSchema 
 } from "@shared/schema";
+import weatherRoutes from "./routes/weather";
 import { randomUUID } from "crypto";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -49,7 +51,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get AI-powered recommendation
+  // Get AI-powered recommendation (legacy)
   app.post("/api/recommend", async (req, res) => {
     try {
       const validatedRequest = aiRecommendationRequestSchema.parse(req.body);
@@ -63,6 +65,26 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("Error generating AI recommendation:", error);
       res.status(500).json({ 
         error: "Failed to generate recommendation",
+        details: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
+
+  // Get enhanced AI-powered recommendation with optimization
+  app.post("/api/recommend-enhanced", async (req, res) => {
+    try {
+      const validatedRequest = enhancedAIRecommendationRequestSchema.parse(req.body);
+      const result = await generateEcoShiftRecommendation(
+        validatedRequest.appliances,
+        validatedRequest.ecoBands,
+        validatedRequest.userContext
+      );
+      
+      res.json(result);
+    } catch (error) {
+      console.error("Error generating enhanced AI recommendation:", error);
+      res.status(500).json({ 
+        error: "Failed to generate enhanced recommendation",
         details: error instanceof Error ? error.message : "Unknown error"
       });
     }
@@ -146,6 +168,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
       service: "EcoShift API"
     });
   });
+
+  // Weather routes
+  app.use("/", weatherRoutes);
 
   const httpServer = createServer(app);
   return httpServer;

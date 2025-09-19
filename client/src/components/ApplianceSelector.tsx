@@ -101,7 +101,7 @@ export default function ApplianceSelector({
 
                 {appliance.selected && (
                   <div className="space-y-4 pt-4 border-t border-border" onClick={e => e.stopPropagation()}>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor={`runtime-${appliance.id}`} className="text-xs">
                           Runtime (hours)
@@ -119,19 +119,44 @@ export default function ApplianceSelector({
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor={`flex-${appliance.id}`} className="text-xs">
-                          Flexibility (hrs)
+                        <Label htmlFor={`start-time-${appliance.id}`} className="text-xs">
+                          Desired Start Time
                         </Label>
-                        <Input
-                          id={`flex-${appliance.id}`}
-                          type="number"
-                          min="1"
-                          max="12"
-                          value={appliance.flexHours || 6}
-                          onChange={(e) => updateApplianceSettings(appliance.id, 'flexHours', parseInt(e.target.value))}
-                          className="h-8 text-sm"
-                          data-testid={`input-flex-${appliance.id}`}
-                        />
+                        <select
+                          id={`start-time-${appliance.id}`}
+                          value={appliance.startTime || 19} // Default to 7 PM
+                          onChange={(e) => updateApplianceSettings(appliance.id, 'startTime', parseInt(e.target.value))}
+                          className="h-8 text-sm border border-input bg-background px-3 py-1 rounded-md"
+                          data-testid={`select-start-time-${appliance.id}`}
+                        >
+                          <option value={0}>12:00 AM</option>
+                          <option value={1}>1:00 AM</option>
+                          <option value={2}>2:00 AM</option>
+                          <option value={3}>3:00 AM</option>
+                          <option value={4}>4:00 AM</option>
+                          <option value={5}>5:00 AM</option>
+                          <option value={6}>6:00 AM</option>
+                          <option value={7}>7:00 AM</option>
+                          <option value={8}>8:00 AM</option>
+                          <option value={9}>9:00 AM</option>
+                          <option value={10}>10:00 AM</option>
+                          <option value={11}>11:00 AM</option>
+                          <option value={12}>12:00 PM</option>
+                          <option value={13}>1:00 PM</option>
+                          <option value={14}>2:00 PM</option>
+                          <option value={15}>3:00 PM</option>
+                          <option value={16}>4:00 PM</option>
+                          <option value={17}>5:00 PM</option>
+                          <option value={18}>6:00 PM</option>
+                          <option value={19}>7:00 PM</option>
+                          <option value={20}>8:00 PM</option>
+                          <option value={21}>9:00 PM</option>
+                          <option value={22}>10:00 PM</option>
+                          <option value={23}>11:00 PM</option>
+                        </select>
+                        <p className="text-xs text-muted-foreground">
+                          When you'd normally start this appliance. EcoShift will find the best time to shift it for maximum savings.
+                        </p>
                       </div>
                     </div>
                   </div>

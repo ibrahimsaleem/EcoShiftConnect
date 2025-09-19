@@ -25,6 +25,8 @@ export const ecoBandSchema = z.object({
   description: z.string(),
 });
 
+// TypeScript interfaces will be exported at the bottom
+
 // Optimization request
 export const optimizationRequestSchema = z.object({
   appliances: z.array(applianceSchema),
@@ -54,9 +56,16 @@ export const optimizationSummarySchema = z.object({
   schedules: z.array(optimizationResultSchema),
 });
 
-// AI recommendation request
+// AI recommendation request (legacy)
 export const aiRecommendationRequestSchema = z.object({
   optimizationSummary: optimizationSummarySchema,
+  userContext: z.string().optional(),
+});
+
+// Enhanced AI recommendation request
+export const enhancedAIRecommendationRequestSchema = z.object({
+  appliances: z.array(applianceSchema),
+  ecoBands: z.array(ecoBandSchema),
   userContext: z.string().optional(),
 });
 
@@ -67,3 +76,4 @@ export type OptimizationRequest = z.infer<typeof optimizationRequestSchema>;
 export type OptimizationResult = z.infer<typeof optimizationResultSchema>;
 export type OptimizationSummary = z.infer<typeof optimizationSummarySchema>;
 export type AIRecommendationRequest = z.infer<typeof aiRecommendationRequestSchema>;
+export type EnhancedAIRecommendationRequest = z.infer<typeof enhancedAIRecommendationRequestSchema>;

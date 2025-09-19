@@ -1,19 +1,27 @@
 import { useState } from "react";
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import PricingDashboardPage from "@/pages/pricing-dashboard";
+import AnalogClockPage from "@/pages/analog-clock";
 
 // Components
 import WelcomeHero from "@/components/WelcomeHero";
-import ApplianceSelector, { type Appliance } from "@/components/ApplianceSelector";
-import EcoBandsTimeline, { type EcoBand } from "@/components/EcoBandsTimeline";
+import ApplianceSelector, { type ApplianceWithIcon } from "@/components/ApplianceSelector";
+import EcoBandsTimeline from "@/components/EcoBandsTimeline";
 import ResultsView, { type ResultsSummary } from "@/components/ResultsView";
 import SavingsDashboard, { type SavingsData } from "@/components/SavingsDashboard";
 import ExportPanel, { type ExportData } from "@/components/ExportPanel";
-import ThemeToggle from "@/components/ThemeToggle";
+import NavigationBar, { type AppStep } from "@/components/NavigationBar";
+import EnergyStatusIndicator from "@/components/EnergyStatusIndicator";
+import DualAnalogClock from "@/components/DualAnalogClock";
+import WeatherOptimizer from "@/components/WeatherOptimizer";
+
+// Types
+import type { Appliance, EcoBand } from "@shared/schema";
 
 // Icons
 import { 
@@ -21,14 +29,13 @@ import {
   Lightbulb, Tv, WashingMachine, Wind 
 } from "lucide-react";
 
-type AppStep = 'welcome' | 'appliances' | 'ecobands' | 'results' | 'dashboard';
 
 function EcoShiftApp() {
   const [currentStep, setCurrentStep] = useState<AppStep>('welcome');
   const [showExport, setShowExport] = useState(false);
   
   // App State
-  const [appliances, setAppliances] = useState<Appliance[]>([
+  const [appliances, setAppliances] = useState<ApplianceWithIcon[]>([
     { id: 'ev', name: 'Electric Vehicle', icon: Car, powerMin: 3000, powerMax: 7000, defaultRuntime: 6, selected: false },
     { id: 'dishwasher', name: 'Dishwasher', icon: Utensils, powerMin: 1200, powerMax: 1500, defaultRuntime: 2, selected: false },
     { id: 'dryer', name: 'Clothes Dryer', icon: Shirt, powerMin: 2000, powerMax: 4000, defaultRuntime: 1, selected: false },
@@ -67,38 +74,83 @@ function EcoShiftApp() {
     { hour: 23, band: 'BLUE', price: 29.91, credit: 0.02, points: 1, description: 'Settling down for night' },
   ];
 
-  // Calculate optimized results (simplified logic for demo)
+  // Calculate optimized results based on desired start time
   const calculateOptimalSchedule = (): ResultsSummary => {
     const selectedAppliances = appliances.filter(a => a.selected);
     const schedules = selectedAppliances.map(appliance => {
-      // Find best time slots (GREEN hours)
-      const greenHours = ecoBands.filter(band => band.band === 'GREEN').map(b => b.hour);
-      const recommendedTime = greenHours[Math.floor(Math.random() * greenHours.length)];
-      
-      // Calculate savings (simplified)
       const avgPower = (appliance.powerMin + appliance.powerMax) / 2;
       const runtime = appliance.runtime || appliance.defaultRuntime;
       const energyUsed = (avgPower / 1000) * runtime;
       
-      // Mock original time (typically evening peak)
-      const originalTime = 18 + Math.floor(Math.random() * 4);
+      // Use the user's desired start time
+      const desiredStartTime = appliance.startTime || 19; // Default to 7 PM
       
-      // Calculate savings based on price difference
-      const originalBand = ecoBands.find(b => b.hour === originalTime);
-      const recommendedBand = ecoBands.find(b => b.hour === recommendedTime);
+      // Find the optimal time within a reasonable flexibility window (±6 hours)
+      const flexibilityWindow = 6;
+      const searchStart = Math.max(0, desiredStartTime - flexibilityWindow);
+      const searchEnd = Math.min(23, desiredStartTime + flexibilityWindow);
       
-      const priceDiff = ((originalBand?.price || 40) - (recommendedBand?.price || 25)) / 1000; // Convert MWh to kWh
-      const savings = energyUsed * priceDiff;
-      const ecoPoints = energyUsed * (recommendedBand?.points || 3);
+      let bestTime = desiredStartTime;
+      let bestScore = -Infinity;
+      let bestSavings = 0;
+      let bestEcoPoints = 0;
+      
+      // Search for the best time slot within the flexibility window
+      for (let startHour = searchStart; startHour <= searchEnd; startHour++) {
+        // Make sure appliance can finish within the day
+        if (startHour + runtime <= 24) {
+          // Calculate cost and eco points for this time slot
+          const originalBand = ecoBands.find(b => b.hour === desiredStartTime);
+          const candidateBand = ecoBands.find(b => b.hour === startHour);
+          
+          if (originalBand && candidateBand) {
+            // Calculate savings (price difference in $/kWh)
+            const originalPrice = originalBand.price / 1000; // Convert MWh to kWh
+            const candidatePrice = candidateBand.price / 1000;
+            const priceDiff = originalPrice - candidatePrice;
+            const savings = energyUsed * priceDiff;
+            
+            // Calculate eco points difference
+            const originalPoints = originalBand.points * energyUsed;
+            const candidatePoints = candidateBand.points * energyUsed;
+            const ecoPointsDiff = candidatePoints - originalPoints;
+            
+            // Score based on savings and eco points (prioritize savings)
+            const score = savings * 2 + ecoPointsDiff * 0.1;
+            
+            if (score > bestScore) {
+              bestScore = score;
+              bestTime = startHour;
+              bestSavings = Math.max(savings, 0);
+              bestEcoPoints = Math.max(ecoPointsDiff, 0);
+            }
+          }
+        }
+      }
+      
+      // Generate reasoning based on the shift
+      const originalBand = ecoBands.find(b => b.hour === desiredStartTime);
+      const recommendedBand = ecoBands.find(b => b.hour === bestTime);
+      
+      let reasoning = '';
+      if (bestTime === desiredStartTime) {
+        reasoning = `Your desired time (${formatTime(desiredStartTime)}) is already optimal! You'll save $${bestSavings.toFixed(2)} and earn ${Math.floor(bestEcoPoints)} EcoPoints.`;
+      } else {
+        const timeShift = bestTime - desiredStartTime;
+        const shiftDirection = timeShift > 0 ? 'later' : 'earlier';
+        const shiftAmount = Math.abs(timeShift);
+        
+        reasoning = `Shift from ${formatTime(desiredStartTime)} to ${formatTime(bestTime)} (${shiftAmount} hour${shiftAmount > 1 ? 's' : ''} ${shiftDirection}) to save $${bestSavings.toFixed(2)} and earn ${Math.floor(bestEcoPoints)} EcoPoints. ${recommendedBand?.band === 'GREEN' ? 'Perfect timing for renewable energy!' : 'Avoids peak pricing during high demand.'}`;
+      }
 
       return {
         appliance: appliance.name,
         icon: appliance.icon,
-        originalTime,
-        recommendedTime,
-        savings: Math.max(savings, 0.5),
-        ecoPoints: Math.floor(ecoPoints),
-        reasoning: `Shift to ${recommendedBand?.band === 'GREEN' ? 'solar surplus' : 'low demand'} hours avoids peak pricing and earns EcoPoints. ${appliance.name.includes('EV') ? 'Perfect for overnight charging!' : 'Great timing for eco-friendly operation.'}`,
+        originalTime: desiredStartTime,
+        recommendedTime: bestTime,
+        savings: bestSavings,
+        ecoPoints: Math.floor(bestEcoPoints),
+        reasoning,
         energyUsed
       };
     });
@@ -110,6 +162,14 @@ function EcoShiftApp() {
       carbonReduction: schedules.reduce((sum, s) => sum + s.energyUsed * 0.4, 0),
       schedules
     };
+  };
+
+  // Helper function to format time
+  const formatTime = (hour: number): string => {
+    if (hour === 0) return "12:00 AM";
+    if (hour < 12) return `${hour}:00 AM`;
+    if (hour === 12) return "12:00 PM";
+    return `${hour - 12}:00 PM`;
   };
 
   const mockSavingsData: SavingsData = {
@@ -155,68 +215,51 @@ function EcoShiftApp() {
       
       case 'appliances':
         return (
-          <div className="min-h-screen bg-background">
-            <header className="border-b border-border p-4">
-              <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <h1 className="text-xl font-bold text-primary">EcoShift</h1>
-                <ThemeToggle />
-              </div>
-            </header>
-            <ApplianceSelector
-              appliances={appliances}
-              onApplianceUpdate={setAppliances}
-              onNext={() => setCurrentStep('ecobands')}
-            />
-          </div>
+          <ApplianceSelector
+            appliances={appliances}
+            onApplianceUpdate={setAppliances}
+            onNext={() => setCurrentStep('ecobands')}
+          />
         );
       
       case 'ecobands':
         return (
-          <div className="min-h-screen bg-background">
-            <header className="border-b border-border p-4">
-              <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <h1 className="text-xl font-bold text-primary">EcoShift</h1>
-                <ThemeToggle />
-              </div>
-            </header>
-            <EcoBandsTimeline
-              ecoBands={ecoBands}
-              onCalculateOptimal={() => setCurrentStep('results')}
-            />
-          </div>
+          <EcoBandsTimeline
+            onCalculateOptimal={() => setCurrentStep('results')}
+          />
         );
       
       case 'results':
         return (
-          <div className="min-h-screen bg-background">
-            <header className="border-b border-border p-4">
-              <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <h1 className="text-xl font-bold text-primary">EcoShift</h1>
-                <ThemeToggle />
-              </div>
-            </header>
-            <ResultsView
-              results={calculateOptimalSchedule()}
-              onExport={handleExport}
-              onStartOver={() => {
-                setAppliances(appliances.map(a => ({ ...a, selected: false })));
-                setCurrentStep('welcome');
-              }}
-            />
-          </div>
+          <ResultsView
+            results={calculateOptimalSchedule()}
+            onExport={handleExport}
+            onStartOver={() => {
+              setAppliances(appliances.map(a => ({ ...a, selected: false })));
+              setCurrentStep('welcome');
+            }}
+            appliances={appliances}
+            ecoBands={ecoBands}
+          />
         );
       
       case 'dashboard':
         return (
-          <div className="min-h-screen bg-background">
-            <header className="border-b border-border p-4">
-              <div className="max-w-6xl mx-auto flex items-center justify-between">
-                <h1 className="text-xl font-bold text-primary">EcoShift</h1>
-                <ThemeToggle />
-              </div>
-            </header>
-            <SavingsDashboard savings={mockSavingsData} />
-          </div>
+          <SavingsDashboard savings={mockSavingsData} />
+        );
+      
+      case 'clock':
+        return (
+          <div className="container mx-auto px-4 py-8">
+            <DualAnalogClock ecoBands={ecoBands} />
+        </div>
+        );
+      
+      case 'weather':
+        return (
+          <div className="container mx-auto px-4 py-8">
+            <WeatherOptimizer ecoBands={ecoBands} />
+        </div>
         );
       
       default:
@@ -224,16 +267,41 @@ function EcoShiftApp() {
     }
   };
 
+  // Calculate current stats for navigation bar
+  const currentResults = calculateOptimalSchedule();
+  const currentEcoPoints = currentResults.totalEcoPoints;
+  const currentSavings = currentResults.totalSavings;
+
   return (
-    <div>
-      {renderCurrentStep()}
-      
-      {/* Navigation Footer (only show after welcome) */}
+    <div className="min-h-screen bg-background">
+      {/* Navigation Bar - show on all pages except welcome */}
       {currentStep !== 'welcome' && (
-        <div className="fixed bottom-6 right-6 space-x-2">
+        <NavigationBar
+          currentStep={currentStep}
+          onStepChange={setCurrentStep}
+          totalEcoPoints={currentEcoPoints}
+          totalSavings={currentSavings}
+          ecoBands={ecoBands}
+        />
+      )}
+      
+      {/* Main Content */}
+      <main className={currentStep === 'welcome' ? '' : 'pt-16'}>
+        {/* Energy Status Indicator - show on all pages except welcome */}
+        {currentStep !== 'welcome' && (
+          <div className="container mx-auto px-4 py-4">
+            <EnergyStatusIndicator ecoBands={ecoBands} />
+          </div>
+        )}
+        {renderCurrentStep()}
+      </main>
+      
+      {/* Floating Action Button for Dashboard (only show after welcome) */}
+      {currentStep !== 'welcome' && currentStep !== 'dashboard' && (
+        <div className="fixed bottom-6 right-6">
           <button
             onClick={() => setCurrentStep('dashboard')}
-            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg hover-elevate"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
             data-testid="button-view-dashboard"
           >
             View Dashboard
@@ -245,9 +313,9 @@ function EcoShiftApp() {
       {showExport && (
         <ExportPanel
           data={{
-            totalSavings: calculateOptimalSchedule().totalSavings,
-            totalEcoPoints: calculateOptimalSchedule().totalEcoPoints,
-            schedules: calculateOptimalSchedule().schedules.map(s => ({
+            totalSavings: currentResults.totalSavings,
+            totalEcoPoints: currentResults.totalEcoPoints,
+            schedules: currentResults.schedules.map(s => ({
               appliance: s.appliance,
               originalTime: s.originalTime,
               recommendedTime: s.recommendedTime,
@@ -267,6 +335,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={EcoShiftApp} />
+      <Route path="/pricing-dashboard" component={PricingDashboardPage} />
+      <Route path="/analog-clock" component={AnalogClockPage} />
       <Route component={NotFound} />
     </Switch>
   );

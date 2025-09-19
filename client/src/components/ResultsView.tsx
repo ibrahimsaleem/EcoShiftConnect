@@ -6,6 +6,8 @@ import {
   Clock, DollarSign, Leaf, TrendingUp, 
   CheckCircle, ArrowRight, Zap 
 } from "lucide-react";
+import GeminiTestButton from "./GeminiTestButton";
+import type { Appliance, EcoBand } from "@shared/schema";
 
 export interface OptimizedSchedule {
   appliance: string;
@@ -30,9 +32,11 @@ interface ResultsViewProps {
   results: ResultsSummary;
   onExport: () => void;
   onStartOver: () => void;
+  appliances?: Appliance[];
+  ecoBands?: EcoBand[];
 }
 
-export default function ResultsView({ results, onExport, onStartOver }: ResultsViewProps) {
+export default function ResultsView({ results, onExport, onStartOver, appliances, ecoBands }: ResultsViewProps) {
   const formatTime = (hour: number) => {
     if (hour === 0) return "12:00 AM";
     if (hour < 12) return `${hour}:00 AM`;
@@ -118,7 +122,7 @@ export default function ResultsView({ results, onExport, onStartOver }: ResultsV
 
       {/* Schedule Details */}
       <Card className="p-6">
-        <h3 className="font-semibold text-xl mb-6">Recommended Schedule Changes</h3>
+        <h3 className="font-semibold text-xl mb-6">Smart Shift Recommendations</h3>
         <div className="space-y-6">
           {results.schedules.map((schedule, index) => {
             const IconComponent = schedule.icon;
@@ -148,12 +152,12 @@ export default function ResultsView({ results, onExport, onStartOver }: ResultsV
 
                 <div className="flex items-center space-x-6 ml-16">
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground">Current</p>
+                    <p className="text-sm text-muted-foreground">Your Desired Time</p>
                     <p className="font-medium">{formatTime(schedule.originalTime)}</p>
                   </div>
                   <ArrowRight className="w-5 h-5 text-muted-foreground" />
                   <div className="text-center">
-                    <p className="text-sm text-muted-foreground">Recommended</p>
+                    <p className="text-sm text-muted-foreground">Optimal Shift Time</p>
                     <p className="font-medium text-primary">{formatTime(schedule.recommendedTime)}</p>
                   </div>
                 </div>
@@ -192,6 +196,17 @@ export default function ResultsView({ results, onExport, onStartOver }: ResultsV
           </div>
         </div>
       </Card>
+
+      {/* AI-Powered Optimization */}
+      {appliances && ecoBands && (
+        <Card className="p-6">
+          <h3 className="font-semibold text-lg mb-4">🤖 AI-Powered Optimization</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Get Gemini AI to analyze your appliances and eco bands data to suggest the most optimal shifts for maximum savings and eco benefits.
+          </p>
+          <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
+        </Card>
+      )}
 
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
