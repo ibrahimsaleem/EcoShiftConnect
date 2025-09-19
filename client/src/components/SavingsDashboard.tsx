@@ -20,9 +20,10 @@ export interface SavingsData {
 interface SavingsDashboardProps {
   savings: SavingsData;
   onStartOptimization?: () => void;
+  onNavigate?: (step: 'clock' | 'weather') => void;
 }
 
-export default function SavingsDashboard({ savings, onStartOptimization }: SavingsDashboardProps) {
+export default function SavingsDashboard({ savings, onStartOptimization, onNavigate }: SavingsDashboardProps) {
   const progressPercentage = (savings.ecoPoints / savings.nextLevelPoints) * 100;
 
   return (
@@ -173,16 +174,34 @@ export default function SavingsDashboard({ savings, onStartOptimization }: Savin
       </Card>
 
       {/* Quick Actions */}
-      {onStartOptimization && (
-        <Card className="p-8 bg-gradient-to-r from-indigo-50 to-purple-100 border-indigo-300">
+      <div className="grid md:grid-cols-3 gap-4">
+        {onStartOptimization && (
+          <Card className="p-6 bg-gradient-to-r from-indigo-50 to-purple-100 border-indigo-300">
+            <div className="text-center">
+              <Button onClick={onStartOptimization} size="lg" className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700">
+                <Zap className="w-5 h-5 mr-2" />
+                🚀 Optimize More
+              </Button>
+            </div>
+          </Card>
+        )}
+        
+        <Card className="p-6 bg-gradient-to-r from-blue-50 to-cyan-100 border-blue-300">
           <div className="text-center">
-            <Button onClick={onStartOptimization} size="lg" className="text-xl px-8 py-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-xl">
-              <Zap className="w-6 h-6 mr-3" />
-              🚀 Optimize More
+            <Button onClick={() => onNavigate?.('clock')} size="lg" className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700">
+              🕐 Energy Clock
             </Button>
           </div>
         </Card>
-      )}
+        
+        <Card className="p-6 bg-gradient-to-r from-orange-50 to-amber-100 border-orange-300">
+          <div className="text-center">
+            <Button onClick={() => onNavigate?.('weather')} size="lg" className="w-full bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700">
+              🌤️ Weather AC
+            </Button>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }
