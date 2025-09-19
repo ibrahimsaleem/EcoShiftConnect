@@ -280,12 +280,41 @@ function EcoShiftApp() {
         return (
           <SavingsDashboard 
             savings={mockSavingsData} 
-            ecoBands={ecoBands}
             onStartOptimization={() => {
               setAppliances(appliances.map(a => ({ ...a, selected: false })));
               setCurrentStep('appliances');
             }}
           />
+        );
+      
+      case 'clock':
+        return (
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Energy Timeline Clock
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Watch Houston's energy pricing change throughout the day
+              </p>
+            </div>
+            <DualAnalogClock ecoBands={ecoBands} />
+          </div>
+        );
+      
+      case 'weather':
+        return (
+          <div className="container mx-auto px-4 py-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-foreground mb-4">
+                Weather-Based Energy Optimization
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Get AI-powered AC temperature recommendations based on weather and energy pricing
+              </p>
+            </div>
+            <WeatherOptimizer ecoBands={ecoBands} />
+          </div>
         );
       
       default:

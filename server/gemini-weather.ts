@@ -1,7 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // This API key is from Gemini Developer API Key
-const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const GEMINI_API_KEY = "AIzaSyAVd72kO1py4DuPzTDKdQPJNduMEi6pKa8";
+const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 interface WeatherData {
   city: string;
@@ -41,7 +42,7 @@ export async function generateWeatherACRecommendation(
 ): Promise<ACRecommendation> {
   try {
     // Check if API key is available
-    if (!process.env.GEMINI_API_KEY) {
+    if (!GEMINI_API_KEY) {
       console.log('GEMINI_API_KEY not found, using fallback AC recommendation');
       return getFallbackACRecommendation(weather, currentBand);
     }

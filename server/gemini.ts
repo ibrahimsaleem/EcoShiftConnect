@@ -7,7 +7,8 @@ import type { OptimizationSummary, Appliance, EcoBand } from "@shared/schema";
 //   - do not change this unless explicitly requested by the user
 
 // This API key is from Gemini Developer API Key, not vertex AI API Key
-const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const GEMINI_API_KEY = "AIzaSyAVd72kO1py4DuPzTDKdQPJNduMEi6pKa8";
+const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 export async function generateEcoShiftRecommendation(
   appliances: Appliance[],
@@ -16,8 +17,8 @@ export async function generateEcoShiftRecommendation(
 ): Promise<{ recommendation: string; optimizedSchedule: OptimizationSummary }> {
   try {
     // Check if API key is available
-    console.log('Environment check - GEMINI_API_KEY:', process.env.GEMINI_API_KEY ? 'Found' : 'Not found');
-    if (!process.env.GEMINI_API_KEY) {
+    console.log('Environment check - GEMINI_API_KEY:', GEMINI_API_KEY ? 'Found' : 'Not found');
+    if (!GEMINI_API_KEY) {
       console.log('GEMINI_API_KEY not found, using fallback response');
       return {
         recommendation: "Your EcoShift plan looks great! By shifting your appliances to greener hours, you're supporting renewable energy and reducing grid stress during peak demand periods. Every shifted hour is a step toward a greener future!",

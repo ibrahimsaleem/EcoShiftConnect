@@ -4,14 +4,8 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { 
   DollarSign, Zap, Leaf, TrendingUp, 
-  Star, Award, Target, Calendar,
-  Cloud, Thermometer, Clock, MapPin,
-  Droplets, Wind, Eye
+  Star, Award, Target, Calendar
 } from "lucide-react";
-import { useState } from "react";
-import WeatherOptimizer from "./WeatherOptimizer";
-import DualAnalogClock from "./DualAnalogClock";
-import type { EcoBand } from "@shared/schema";
 
 export interface SavingsData {
   totalSavings: number;
@@ -25,54 +19,21 @@ export interface SavingsData {
 
 interface SavingsDashboardProps {
   savings: SavingsData;
-  ecoBands?: EcoBand[];
   onStartOptimization?: () => void;
 }
 
-export default function SavingsDashboard({ savings, ecoBands, onStartOptimization }: SavingsDashboardProps) {
+export default function SavingsDashboard({ savings, onStartOptimization }: SavingsDashboardProps) {
   const progressPercentage = (savings.ecoPoints / savings.nextLevelPoints) * 100;
-  const [activeWidget, setActiveWidget] = useState<'overview' | 'weather' | 'clock'>('overview');
 
   return (
-    <div className="max-w-7xl mx-auto p-6 space-y-8">
-      {/* Header with Navigation Tabs */}
-      <div className="text-center space-y-6">
-        <div>
-          <h2 className="text-3xl font-bold text-foreground">
-            EcoShift Dashboard
-          </h2>
-          <p className="text-muted-foreground text-lg">
-            Your complete energy optimization hub
-          </p>
-        </div>
-        
-        {/* Widget Tabs */}
-        <div className="flex justify-center space-x-2">
-          <Button
-            variant={activeWidget === 'overview' ? 'default' : 'outline'}
-            onClick={() => setActiveWidget('overview')}
-            className="flex items-center space-x-2"
-          >
-            <TrendingUp className="w-4 h-4" />
-            <span>Overview</span>
-          </Button>
-          <Button
-            variant={activeWidget === 'weather' ? 'default' : 'outline'}
-            onClick={() => setActiveWidget('weather')}
-            className="flex items-center space-x-2"
-          >
-            <Cloud className="w-4 h-4" />
-            <span>Weather</span>
-          </Button>
-          <Button
-            variant={activeWidget === 'clock' ? 'default' : 'outline'}
-            onClick={() => setActiveWidget('clock')}
-            className="flex items-center space-x-2"
-          >
-            <Clock className="w-4 h-4" />
-            <span>Energy Clock</span>
-          </Button>
-        </div>
+    <div className="max-w-4xl mx-auto p-6 space-y-8">
+      <div className="text-center space-y-4">
+        <h2 className="text-3xl font-bold text-foreground">
+          Your EcoShift Impact
+        </h2>
+        <p className="text-muted-foreground text-lg">
+          Track your savings, points, and environmental impact
+        </p>
       </div>
 
       {/* Main Stats */}
@@ -218,8 +179,8 @@ export default function SavingsDashboard({ savings, ecoBands, onStartOptimizatio
         </div>
       </Card>
 
-      {/* Widget Content */}
-      {activeWidget === 'overview' && onStartOptimization && (
+      {/* Quick Actions */}
+      {onStartOptimization && (
         <Card className="p-6">
           <div className="text-center space-y-4">
             <h3 className="text-xl font-semibold">Ready to Optimize More?</h3>
@@ -230,20 +191,6 @@ export default function SavingsDashboard({ savings, ecoBands, onStartOptimizatio
               <Zap className="w-4 h-4 mr-2" />
               Start New Optimization
             </Button>
-          </div>
-        </Card>
-      )}
-
-      {activeWidget === 'weather' && ecoBands && (
-        <Card className="p-6">
-          <WeatherOptimizer ecoBands={ecoBands} />
-        </Card>
-      )}
-
-      {activeWidget === 'clock' && ecoBands && (
-        <Card className="p-6">
-          <div className="flex justify-center">
-            <DualAnalogClock ecoBands={ecoBands} />
           </div>
         </Card>
       )}
