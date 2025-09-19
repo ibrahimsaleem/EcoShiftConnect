@@ -43,9 +43,9 @@ const navigationItems = [
   },
   {
     id: 'results' as AppStep,
-    label: 'Optimize',
+    label: 'AI Results',
     icon: BarChart3,
-    description: 'AI Results'
+    description: 'Optimize'
   },
   {
     id: 'dashboard' as AppStep,

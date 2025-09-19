@@ -220,35 +220,25 @@ function EcoShiftApp() {
           <ApplianceSelector
             appliances={appliances}
             onApplianceUpdate={setAppliances}
-            onNext={() => setCurrentStep('ecobands')}
+            onNext={() => setCurrentStep('results')}
           />
         );
       
-      case 'ecobands':
-        return (
-          <EcoBandsTimeline
-            onCalculateOptimal={() => setCurrentStep('ai-recommendations')}
-          />
-        );
-      
-      case 'ai-recommendations':
+      case 'results':
         return (
           <div className="max-w-6xl mx-auto p-6 space-y-6">
             <div className="text-center space-y-4">
-              <h2 className="text-3xl font-bold text-foreground">
-                🤖 AI-Powered Optimization
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                🤖 AI Optimization Results
               </h2>
-              <p className="text-muted-foreground text-lg">
-                Gemini AI is analyzing your appliances and eco bands to create the most optimal schedule
-              </p>
             </div>
             <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
             <div className="text-center space-x-4">
               <Button 
                 variant="outline" 
-                onClick={() => setCurrentStep('results')}
+                onClick={() => setCurrentStep('ecobands')}
               >
-                View Manual Calculation
+                View Eco Bands
               </Button>
               <Button 
                 onClick={() => {
@@ -262,17 +252,10 @@ function EcoShiftApp() {
           </div>
         );
       
-      case 'results':
+      case 'ecobands':
         return (
-          <ResultsView
-            results={calculateOptimalSchedule()}
-            onExport={handleExport}
-            onStartOver={() => {
-              setAppliances(appliances.map(a => ({ ...a, selected: false })));
-              setCurrentStep('welcome');
-            }}
-            appliances={appliances}
-            ecoBands={ecoBands}
+          <EcoBandsTimeline
+            onCalculateOptimal={() => setCurrentStep('results')}
           />
         );
       
