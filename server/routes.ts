@@ -13,6 +13,11 @@ import { randomUUID } from "crypto";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   const optimizer = new EcoShiftOptimizer();
+  
+  // Health check endpoint for Render
+  app.get("/health", (_req, res) => {
+    res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+  });
 
   // Get eco bands data
   app.get("/api/eco-bands", (req, res) => {

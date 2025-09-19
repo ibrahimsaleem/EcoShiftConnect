@@ -73,6 +73,20 @@ npm run build
 npm start
 ```
 
+### Deployment on Render
+
+EcoShiftConnect can be easily deployed on [Render](https://render.com):
+
+1. Connect your GitHub repository to Render
+2. Use the following settings:
+   - **Build Command**: `npm install; npm run build`
+   - **Start Command**: `npm run start:render`
+   - **Environment Variables**:
+     - `GEMINI_API_KEY`: For AI recommendations
+     - `OPENWEATHER_API_KEY`: (Optional) For real weather data
+
+For detailed instructions, see [render-deployment.md](render-deployment.md)
+
 ## 🛠️ Tech Stack
 
 ### Frontend
