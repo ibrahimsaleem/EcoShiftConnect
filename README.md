@@ -79,7 +79,7 @@ EcoShiftConnect can be easily deployed on [Render](https://render.com):
 
 1. Connect your GitHub repository to Render
 2. Use the following settings:
-   - **Build Command**: `npm install; npm run build`
+   - **Build Command**: `npm install --include=dev; npm run build`
    - **Start Command**: `npm run start:render`
    - **Environment Variables**:
      - `GEMINI_API_KEY`: For AI recommendations
