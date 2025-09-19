@@ -36,12 +36,6 @@ const navigationItems = [
     description: 'Welcome & Overview'
   },
   {
-    id: 'ai-recommendations' as AppStep,
-    label: 'AI Recommendations',
-    icon: Activity,
-    description: 'Get AI-Powered Optimization'
-  },
-  {
     id: 'appliances' as AppStep,
     label: 'Appliances',
     icon: Zap,

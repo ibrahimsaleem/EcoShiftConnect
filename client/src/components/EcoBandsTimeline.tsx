@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Leaf, AlertTriangle, Zap, DollarSign } from "lucide-react";
+import { Leaf, AlertTriangle, Zap, DollarSign, Sparkles } from "lucide-react";
 import type { EcoBand } from "@shared/schema";
 import { useQuery } from "@tanstack/react-query";
 
@@ -202,10 +202,11 @@ export default function EcoBandsTimeline({ onCalculateOptimal }: EcoBandsTimelin
           onClick={onCalculateOptimal}
           data-testid="button-calculate-optimal"
         >
-          Calculate Optimal Schedule
+          <Sparkles className="w-5 h-5 mr-2" />
+          Get AI Optimization
         </Button>
         <p className="text-sm text-muted-foreground mt-2">
-          We'll find the best times to run your appliances
+          AI will analyze your appliances and find the optimal schedule
         </p>
       </div>
     </div>

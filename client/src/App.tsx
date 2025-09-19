@@ -211,33 +211,8 @@ function EcoShiftApp() {
       case 'welcome':
         return (
           <WelcomeHero 
-            onGetStarted={() => setCurrentStep('appliances')}
-            onAIGetStarted={() => setCurrentStep('ai-recommendations')}
+            onGetStarted={() => setCurrentStep('appliances')} 
           />
-        );
-      
-      case 'ai-recommendations':
-        return (
-          <div className="max-w-6xl mx-auto p-6">
-            <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
-            <div className="mt-8 text-center">
-              <Button 
-                variant="outline" 
-                onClick={() => setCurrentStep('appliances')}
-                className="mr-4"
-              >
-                Manual Shift Instead
-              </Button>
-              <Button 
-                onClick={() => {
-                  setAppliances(appliances.map(a => ({ ...a, selected: false })));
-                  setCurrentStep('welcome');
-                }}
-              >
-                Start Over
-              </Button>
-            </div>
-          </div>
         );
       
       case 'appliances':
@@ -252,8 +227,39 @@ function EcoShiftApp() {
       case 'ecobands':
         return (
           <EcoBandsTimeline
-            onCalculateOptimal={() => setCurrentStep('results')}
+            onCalculateOptimal={() => setCurrentStep('ai-recommendations')}
           />
+        );
+      
+      case 'ai-recommendations':
+        return (
+          <div className="max-w-6xl mx-auto p-6 space-y-6">
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                🤖 AI-Powered Optimization
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Gemini AI is analyzing your appliances and eco bands to create the most optimal schedule
+              </p>
+            </div>
+            <GeminiTestButton appliances={appliances} ecoBands={ecoBands} />
+            <div className="text-center space-x-4">
+              <Button 
+                variant="outline" 
+                onClick={() => setCurrentStep('results')}
+              >
+                View Manual Calculation
+              </Button>
+              <Button 
+                onClick={() => {
+                  setAppliances(appliances.map(a => ({ ...a, selected: false })));
+                  setCurrentStep('welcome');
+                }}
+              >
+                Start Over
+              </Button>
+            </div>
+          </div>
         );
       
       case 'results':
