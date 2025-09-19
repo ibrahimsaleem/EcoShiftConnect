@@ -14,11 +14,12 @@ import {
   TrendingUp,
   Activity,
   Clock,
-  Cloud
+  Cloud,
+  DollarSign
 } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
 
-export type AppStep = 'welcome' | 'ai-recommendations' | 'appliances' | 'ecobands' | 'results' | 'dashboard' | 'clock' | 'weather';
+export type AppStep = 'welcome' | 'ai-recommendations' | 'appliances' | 'ecobands' | 'results' | 'dashboard' | 'clock' | 'weather' | 'energy-plans';
 
 interface NavigationBarProps {
   currentStep: AppStep;
@@ -52,6 +53,12 @@ const navigationItems = [
     label: 'Dashboard',
     icon: Settings,
     description: 'Stats'
+  },
+  {
+    id: 'energy-plans' as AppStep,
+    label: 'Energy Plans',
+    icon: DollarSign,
+    description: 'Provider Plans'
   }
 ];
 

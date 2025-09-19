@@ -20,6 +20,7 @@ import EnergyStatusIndicator from "@/components/EnergyStatusIndicator";
 import DualAnalogClock from "@/components/DualAnalogClock";
 import WeatherOptimizer from "@/components/WeatherOptimizer";
 import GeminiTestButton from "@/components/GeminiTestButton";
+import EnergyProviderIntegration from "@/components/EnergyProviderIntegration";
 import { Button } from "@/components/ui/button";
 
 // Types
@@ -212,6 +213,7 @@ function EcoShiftApp() {
         return (
           <WelcomeHero 
             onGetStarted={() => setCurrentStep('appliances')}
+            onViewEnergyPlans={() => setCurrentStep('energy-plans')}
             ecoBands={ecoBands}
           />
         );
@@ -309,6 +311,9 @@ function EcoShiftApp() {
             <WeatherOptimizer ecoBands={ecoBands} />
           </div>
         );
+      
+      case 'energy-plans':
+        return <EnergyProviderIntegration />;
       
       default:
         return <NotFound />;

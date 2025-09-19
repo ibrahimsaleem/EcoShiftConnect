@@ -8,10 +8,11 @@ import type { EcoBand } from "@shared/schema";
 
 interface WelcomeHeroProps {
   onGetStarted: () => void;
+  onViewEnergyPlans?: () => void;
   ecoBands?: EcoBand[];
 }
 
-export default function WelcomeHero({ onGetStarted, ecoBands }: WelcomeHeroProps) {
+export default function WelcomeHero({ onGetStarted, onViewEnergyPlans, ecoBands }: WelcomeHeroProps) {
   const mockSavingsData = {
     totalSavings: 127.45,
     ecoPoints: 850,
@@ -49,15 +50,28 @@ export default function WelcomeHero({ onGetStarted, ecoBands }: WelcomeHeroProps
             <span className="text-2xl bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">💰 Save Money • 🌱 Save Earth</span>
           </h1>
 
-          <Button 
-            size="lg" 
-            className="text-xl px-12 py-8 h-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 shadow-xl" 
-            onClick={onGetStarted}
-            data-testid="button-get-started"
-          >
-            <Sparkles className="w-6 h-6 mr-3" />
-            🚀 Start Optimization
-          </Button>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button 
+              size="lg" 
+              className="text-xl px-12 py-8 h-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 shadow-xl" 
+              onClick={onGetStarted}
+              data-testid="button-get-started"
+            >
+              <Sparkles className="w-6 h-6 mr-3" />
+              🚀 Start Optimization
+            </Button>
+            
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-xl px-12 py-8 h-auto border-blue-400 hover:bg-blue-50 shadow-lg" 
+              onClick={onViewEnergyPlans}
+              data-testid="button-view-energy-plans"
+            >
+              <DollarSign className="w-6 h-6 mr-3" />
+              💰 Compare Plans
+            </Button>
+          </div>
         </div>
 
         {/* Dashboard Section */}
