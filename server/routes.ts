@@ -170,7 +170,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Weather routes
-  app.use("/", weatherRoutes);
+  app.use("/api", weatherRoutes);
 
   const httpServer = createServer(app);
   return httpServer;
