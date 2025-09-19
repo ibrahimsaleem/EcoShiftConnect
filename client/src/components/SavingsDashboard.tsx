@@ -28,67 +28,60 @@ export default function SavingsDashboard({ savings, onStartOptimization }: Savin
   return (
     <div className="max-w-4xl mx-auto p-6 space-y-8">
       <div className="text-center space-y-4">
-        <h2 className="text-3xl font-bold text-foreground">
-          Your EcoShift Impact
+        <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-green-600 bg-clip-text text-transparent">
+          🎯 Your Impact Dashboard
         </h2>
-        <p className="text-muted-foreground text-lg">
-          Track your savings, points, and environmental impact
-        </p>
       </div>
 
       {/* Main Stats */}
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card className="p-6 hover-elevate" data-testid="card-total-savings">
+        <Card className="p-6 hover-elevate bg-gradient-to-br from-green-50 to-emerald-100 border-green-300" data-testid="card-total-savings">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-chart-3/20 rounded-lg flex items-center justify-center">
-              <DollarSign className="w-6 h-6 text-chart-3" />
+            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+              <DollarSign className="w-8 h-8 text-white" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Total Savings</p>
-              <p className="text-2xl font-bold text-chart-3">
-                ${savings.totalSavings.toFixed(2)}
+              <p className="text-3xl font-bold text-green-700">
+                💰 ${savings.totalSavings.toFixed(2)}
               </p>
             </div>
           </div>
         </Card>
 
-        <Card className="p-6 hover-elevate" data-testid="card-eco-points">
+        <Card className="p-6 hover-elevate bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-300" data-testid="card-eco-points">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-              <Leaf className="w-6 h-6 text-primary" />
+            <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center shadow-lg">
+              <Leaf className="w-8 h-8 text-white" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">EcoPoints</p>
-              <p className="text-2xl font-bold text-primary">
-                {savings.ecoPoints}
+              <p className="text-3xl font-bold text-blue-700">
+                🌱 {savings.ecoPoints}
               </p>
             </div>
           </div>
         </Card>
 
-        <Card className="p-6 hover-elevate" data-testid="card-carbon-saved">
+        <Card className="p-6 hover-elevate bg-gradient-to-br from-purple-50 to-violet-100 border-purple-300" data-testid="card-carbon-saved">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-chart-1/20 rounded-lg flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 text-chart-1" />
+            <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full flex items-center justify-center shadow-lg">
+              <TrendingUp className="w-8 h-8 text-white" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">CO₂ Saved</p>
-              <p className="text-2xl font-bold text-chart-1">
-                {savings.carbonSaved.toFixed(1)}kg
+              <p className="text-3xl font-bold text-purple-700">
+                🌍 {savings.carbonSaved.toFixed(1)}kg
               </p>
             </div>
           </div>
         </Card>
 
-        <Card className="p-6 hover-elevate" data-testid="card-energy-shifted">
+        <Card className="p-6 hover-elevate bg-gradient-to-br from-orange-50 to-amber-100 border-orange-300" data-testid="card-energy-shifted">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-chart-2/20 rounded-lg flex items-center justify-center">
-              <Zap className="w-6 h-6 text-chart-2" />
+            <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+              <Zap className="w-8 h-8 text-white" />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Energy Shifted</p>
-              <p className="text-2xl font-bold text-chart-2">
-                {savings.energyShifted.toFixed(1)}kWh
+              <p className="text-3xl font-bold text-orange-700">
+                ⚡ {savings.energyShifted.toFixed(1)}kWh
               </p>
             </div>
           </div>
@@ -181,15 +174,11 @@ export default function SavingsDashboard({ savings, onStartOptimization }: Savin
 
       {/* Quick Actions */}
       {onStartOptimization && (
-        <Card className="p-6">
-          <div className="text-center space-y-4">
-            <h3 className="text-xl font-semibold">Ready to Optimize More?</h3>
-            <p className="text-muted-foreground">
-              Create a new appliance schedule to maximize your savings and eco impact
-            </p>
-            <Button onClick={onStartOptimization} size="lg">
-              <Zap className="w-4 h-4 mr-2" />
-              Start New Optimization
+        <Card className="p-8 bg-gradient-to-r from-indigo-50 to-purple-100 border-indigo-300">
+          <div className="text-center">
+            <Button onClick={onStartOptimization} size="lg" className="text-xl px-8 py-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 shadow-xl">
+              <Zap className="w-6 h-6 mr-3" />
+              🚀 Optimize More
             </Button>
           </div>
         </Card>

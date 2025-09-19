@@ -23,70 +23,54 @@ export default function WelcomeHero({ onGetStarted }: WelcomeHeroProps) {
             </div>
           </div>
           
-          <h1 className="text-5xl font-bold text-foreground leading-tight">
-            <span className="text-primary">EcoShift</span> — Power Your Savings,
+          <h1 className="text-5xl font-bold leading-tight">
+            <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">EcoShift</span>
             <br />
-            Protect Our Planet
+            <span className="text-2xl bg-gradient-to-r from-orange-500 to-green-500 bg-clip-text text-transparent">💰 Save Money • 🌱 Save Earth</span>
           </h1>
-          
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Shift your load. Support your future. EcoShift helps you lower your bill and lower emissions by shifting appliance usage to greener grid hours.
-          </p>
         </div>
 
         {/* Feature Cards */}
         <div className="grid md:grid-cols-3 gap-6 mt-12">
-          <Card className="p-6 hover-elevate" data-testid="card-save-money">
+          <Card className="p-6 hover-elevate bg-gradient-to-br from-green-50 to-emerald-100 border-green-200" data-testid="card-save-money">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 bg-chart-3/20 rounded-lg flex items-center justify-center">
-                <DollarSign className="w-6 h-6 text-chart-3" />
+              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                <DollarSign className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Save Money</h3>
-              <p className="text-muted-foreground">
-                Reduce your electricity bill by running appliances during cheaper hours
-              </p>
+              <h3 className="font-bold text-xl text-green-700">💵 Save Money</h3>
             </div>
           </Card>
           
-          <Card className="p-6 hover-elevate" data-testid="card-save-energy">
+          <Card className="p-6 hover-elevate bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-200" data-testid="card-save-energy">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 bg-chart-2/20 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-chart-2" />
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center shadow-lg">
+                <Zap className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Save Energy</h3>
-              <p className="text-muted-foreground">
-                Optimize your energy usage with smart timing recommendations
-              </p>
+              <h3 className="font-bold text-xl text-blue-700">⚡ Smart Timing</h3>
             </div>
           </Card>
           
-          <Card className="p-6 hover-elevate" data-testid="card-save-earth">
+          <Card className="p-6 hover-elevate bg-gradient-to-br from-orange-50 to-amber-100 border-orange-200" data-testid="card-save-earth">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-                <Leaf className="w-6 h-6 text-primary" />
+              <div className="w-16 h-16 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full flex items-center justify-center shadow-lg">
+                <Leaf className="w-8 h-8 text-white" />
               </div>
-              <h3 className="font-semibold text-lg">Save the Earth</h3>
-              <p className="text-muted-foreground">
-                Support renewable energy and reduce carbon emissions
-              </p>
+              <h3 className="font-bold text-xl text-orange-700">🌍 Save Earth</h3>
             </div>
           </Card>
         </div>
 
         {/* CTA */}
-        <div className="pt-8 space-y-4">
+        <div className="pt-8">
           <Button 
             size="lg" 
-            className="text-lg px-8 py-6 h-auto" 
+            className="text-xl px-12 py-8 h-auto bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 shadow-xl" 
             onClick={onGetStarted}
             data-testid="button-get-started"
           >
-            <Sparkles className="w-5 h-5 mr-2" />
-            Start Optimizing Your Energy
+            <Sparkles className="w-6 h-6 mr-3" />
+            🚀 Start Now
           </Button>
-          <p className="text-sm text-muted-foreground">
-            Setup takes 2 minutes • AI recommendations • Real savings
-          </p>
         </div>
       </div>
     </div>

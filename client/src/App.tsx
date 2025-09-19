@@ -291,12 +291,9 @@ function EcoShiftApp() {
         return (
           <div className="container mx-auto px-4 py-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Energy Timeline Clock
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent mb-4">
+                ⚡ Live Energy Clock
               </h2>
-              <p className="text-muted-foreground text-lg">
-                Watch Houston's energy pricing change throughout the day
-              </p>
             </div>
             <DualAnalogClock ecoBands={ecoBands} />
           </div>
@@ -306,12 +303,9 @@ function EcoShiftApp() {
         return (
           <div className="container mx-auto px-4 py-8">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Weather-Based Energy Optimization
+              <h2 className="text-3xl font-bold bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent mb-4">
+                🌤️ Smart AC Optimizer
               </h2>
-              <p className="text-muted-foreground text-lg">
-                Get AI-powered AC temperature recommendations based on weather and energy pricing
-              </p>
             </div>
             <WeatherOptimizer ecoBands={ecoBands} />
           </div>

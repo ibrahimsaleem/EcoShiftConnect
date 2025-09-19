@@ -31,39 +31,39 @@ interface NavigationBarProps {
 const navigationItems = [
   {
     id: 'welcome' as AppStep,
-    label: 'Home',
+    label: '🏠 Home',
     icon: Home,
-    description: 'Welcome & Overview'
+    description: 'Welcome'
   },
   {
     id: 'appliances' as AppStep,
-    label: 'Setup',
+    label: '⚡ Setup',
     icon: Zap,
-    description: 'Configure Appliances'
+    description: 'Configure'
   },
   {
     id: 'results' as AppStep,
-    label: 'Optimize',
+    label: '🤖 Optimize',
     icon: BarChart3,
-    description: 'AI Recommendations'
+    description: 'AI Results'
   },
   {
     id: 'dashboard' as AppStep,
-    label: 'Dashboard',
+    label: '📊 Dashboard',
     icon: Settings,
-    description: 'Your Progress & Stats'
+    description: 'Your Stats'
   },
   {
     id: 'clock' as AppStep,
-    label: 'Energy Clock',
+    label: '🕐 Clock',
     icon: Clock,
-    description: 'Live Energy Timeline'
+    description: 'Live Timeline'
   },
   {
     id: 'weather' as AppStep,
-    label: 'Weather',
+    label: '🌤️ Weather',
     icon: Cloud,
-    description: 'Weather-Based AC Optimization'
+    description: 'AC Optimizer'
   }
 ];
 
