@@ -29,7 +29,7 @@ Add the following environment variables:
 
 | Variable Name | Value | Description |
 |---------------|-------|-------------|
-| `GEMINI_API_KEY` | `AIzaSyAVd72kO1py4DuPzTDKdQPJNduMEi6pKa8` | API key for Gemini AI (already hardcoded but better as env var) |
+| `GEMINI_API_KEY` | `your Gemini API key` | API key for Gemini AI (set in Render, never commit it) |
 | `OPENWEATHER_API_KEY` | `your_api_key` | (Optional) API key for OpenWeatherMap for real weather data |
 | `NODE_ENV` | `production` | Set the environment to production mode |
 

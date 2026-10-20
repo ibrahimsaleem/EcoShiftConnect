@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // This API key is from Gemini Developer API Key
-const GEMINI_API_KEY = "AIzaSyAVd72kO1py4DuPzTDKdQPJNduMEi6pKa8";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 interface WeatherData {

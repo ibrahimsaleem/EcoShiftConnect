@@ -7,7 +7,7 @@ import type { OptimizationSummary, Appliance, EcoBand } from "@shared/schema";
 //   - do not change this unless explicitly requested by the user
 
 // This API key is from Gemini Developer API Key, not vertex AI API Key
-const GEMINI_API_KEY = "AIzaSyAVd72kO1py4DuPzTDKdQPJNduMEi6pKa8";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const ai = new GoogleGenerativeAI(GEMINI_API_KEY);
 
 export async function generateEcoShiftRecommendation(
